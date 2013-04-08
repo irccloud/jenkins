@@ -6,4 +6,7 @@ exec chpst -u <%= node['jenkins']['server']['user'] %> -U <%= node['jenkins']['s
   JENKINS_HOME=<%= node['jenkins']['server']['home'] %>/jenkins-data \
   java <%= node['jenkins']['server']['jvm_options'] %> -jar jenkins.war \
   -Xloggc:<%= node['jenkins']['server']['log_dir'] %>/gclog.log \
+  <% if node['jenkins']['server']['prefix'] -%>
+  --prefix=<%= node['jenkins']['server']['prefix'] %> \
+  <% end -%>
   --httpPort=<%= node['jenkins']['server']['port'] %>
